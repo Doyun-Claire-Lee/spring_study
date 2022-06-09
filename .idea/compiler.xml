@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="spring-data-jpa" />
+        <module name="spring-boot-init-security" />
+        <module name="spring-boot-init-actuator" />
+        <module name="spring-boot-init-data-mongodb" />
+        <module name="spring-boot-init-data-redis" />
+        <module name="inflearn-spring-boot" />
+        <module name="spring-boot-init-data-neo4j" />
+        <module name="spring-petclinic" />
+        <module name="spring-boot-init-rest-client" />
+        <module name="spring-boot-init-data-jpa" />
+        <module name="spring-boot-init-actuator-client" />
+        <module name="inflearn-spring-boot-init-web-mvc" />
+        <module name="inflearn-spring-boot-init-inmemory-data" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

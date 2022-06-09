@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/core-element-comprehension" />
+    <file type="web" url="file://$PROJECT_DIR$/spring-petclinic" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/spring-data-jpa/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-petclinic/pom.xml" />
+        <option value="$PROJECT_DIR$/inflearn-spring-boot/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-init-actuator/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-init-data-jpa/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-init-security/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-init-data-neo4j/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-init-data-redis/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-init-rest-client/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-init-data-mongodb/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-init-actuator-client/pom.xml" />
+        <option value="$PROJECT_DIR$/inflearn-spring-boot-init-web-mvc/pom.xml" />
+        <option value="$PROJECT_DIR$/inflearn-spring-boot-init-inmemory-data/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK11" project-jdk-type="JavaSDK" />
+</project>
