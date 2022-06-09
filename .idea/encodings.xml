@@ -5,10 +5,13 @@
     <file url="file://$PROJECT_DIR$/inflearn-spring-boot-init-inmemory-data/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inflearn-spring-boot-init-web-mvc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inflearn-spring-boot-init-web-mvc/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inflearn-spring-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-init-actuator-client/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-init-actuator-client/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-init-actuator/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-init-actuator/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-init-data-jpa/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-init-data-mongodb/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-init-data-neo4j/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-init-data-neo4j/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-init-data-redis/src/main/java" charset="UTF-8" />
