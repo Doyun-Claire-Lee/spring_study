@@ -36,6 +36,5 @@ public class ConfigurationSingletonTest {
         //              그 클래스를 스프링 빈으로 등록한 것. 이 클래스가 싱글톤을 보장해줌
         // @Configuration을 붙여야 CGLIB이 개입하여 싱글톤을 보장해줌.
         System.out.println("appConfig.getClass() = " + appConfig.getClass());
-
     }
 }
