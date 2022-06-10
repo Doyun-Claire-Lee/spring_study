@@ -16,9 +16,11 @@ public class SingletonTest {
     void pureContainer() {
         AppConfig appConfig = new AppConfig();
 
+        // 조회: 호출할 때 마다 객체를 생성
         MemberService memberService1 = appConfig.memberService();
         MemberService memberService2 = appConfig.memberService();
 
+        // 참조값이 다른 것을 확인
         assertThat(memberService1).isNotSameAs(memberService2);
     }
 
