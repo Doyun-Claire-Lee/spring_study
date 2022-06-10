@@ -1,5 +1,6 @@
 package com.lecture.spring.order;
 
+import com.lecture.spring.annotation.MainDiscountPolicy;
 import com.lecture.spring.discount.DiscountPolicy;
 import com.lecture.spring.member.Member;
 import com.lecture.spring.member.MemberRepository;
@@ -16,7 +17,8 @@ public class OrderServiceImpl implements OrderService {
     // 생성자가 하나만 있다면 @Autowired를 생략할 수 있다.
     // @Qualifier - Bean 이름 이외에 추가로 구분할 수 있는 구분자를 설정해 줄 수 있는 애노테이션
     public OrderServiceImpl(MemberRepository memberRepository,
-                            DiscountPolicy discountPolicy) {
+                            @MainDiscountPolicy DiscountPolicy discountPolicy) {
+//                            DiscountPolicy discountPolicy) {
 //                            @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
