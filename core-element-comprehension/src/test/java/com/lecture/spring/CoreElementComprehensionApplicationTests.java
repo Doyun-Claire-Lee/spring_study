@@ -9,5 +9,4 @@ class CoreElementComprehensionApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }
