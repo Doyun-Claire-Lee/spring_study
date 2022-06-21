@@ -1,5 +1,8 @@
 package com.hello.web.servletmvc;
 
+import com.hello.domain.member.Member;
+import com.hello.domain.member.MemberRepository;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,16 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name="mvcMemberForServlet", urlPatterns = "/servlet-mvc/members/new-form")
-public class MvcMemberForServlet extends HttpServlet {
+@WebServlet(name = "mvcMemberListServlet", urlPatterns = "/servlet-mvc/members")
+public class MvcMemberListServlet extends HttpServlet {
+
+    private MemberRepository memberRepository = MemberRepository.getInstance();
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String viewPath = "/WEB-INF/views/new-form.jsp";
+        List<Member> members = memberRepository.findAll();
 
-        // Contorller에서 view로 이동할때 사용하는 객체
-        // 서버 내부에서 다시 호출이 발생한다.(redirect가 아님!)
+        request.setAttribute("members", members);
+
+        String viewPath = "/WEB-INF/views/members.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
         dispatcher.forward(request, response);
     }
