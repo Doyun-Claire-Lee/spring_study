@@ -45,7 +45,7 @@ public class RequestBodyJsonController {
 
         return "ok";
     }
-    
+
     /*
     @RequestBody를 사용하면 메세지컨버터가 HttpBody의 내용을 원하는 문자나 객체로 변경해줌.
     HttpMessageConverter -> MappingJackson2HttpMessageConverter(json일 경우)
@@ -70,7 +70,7 @@ public class RequestBodyJsonController {
     }
 
     @ResponseBody
-    @PostMapping("/request-body-json-v4")
+    @PostMapping("/request-body-json-v5")
     public HelloData requestBodyJsonV5(@RequestBody HelloData helloData) {
         log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
 
