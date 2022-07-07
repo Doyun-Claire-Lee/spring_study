@@ -35,7 +35,7 @@ public class BasicController {
     @GetMapping("/variable")
     public String variable(Model model) {
         User userA = new User("userA", 10);
-        User userB= new User("userB", 20);
+        User userB = new User("userB", 20);
 
         List<User> list = new ArrayList<>();
         list.add(userA);
@@ -88,6 +88,61 @@ public class BasicController {
         model.addAttribute("data", "Spring!");
 
         return "basic/operation";
+    }
+
+    @GetMapping("/attribute")
+    public String attribute() {
+        return "basic/attribute";
+    }
+
+    @GetMapping("/each")
+    public String each(Model model) {
+        addUsers(model);
+
+        return "basic/each";
+    }
+
+    @GetMapping("/condition")
+    public String condition(Model model) {
+        addUsers(model);
+
+        return "basic/condition";
+    }
+
+    @GetMapping("/comments")
+    public String comments(Model model) {
+        model.addAttribute("data", "Spring!");
+
+        return "basic/comments";
+    }
+
+    /*
+    타임리프에서 제공하는 특별한 속성
+    여러 태그에서 반복 객체의 값을 사용해야 할 때 블록처리 해놓고 사용
+    렌더링 된 후 block태그는 사라지게 됨.
+     */
+    @GetMapping("/block")
+    public String block(Model model) {
+        addUsers(model);
+
+        return "basic/block";
+    }
+
+    @GetMapping("/javascript")
+    public String javascript(Model model) {
+        model.addAttribute("user", new User("UserD", 40));
+        addUsers(model);
+
+        return "basic/javascript";
+    }
+
+    private void addUsers(Model model) {
+        List<User> list = new ArrayList<>();
+        list.add(new User("UserA", 10));
+        list.add(new User("UserB", 20));
+        list.add(new User("UserC", 30));
+
+        model.addAttribute("users", list);
     }
 
     @Component("helloBean")
