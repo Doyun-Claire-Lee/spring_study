@@ -18,18 +18,65 @@
         <h2>상품 등록 폼</h2>
     </div>
 
-    <form action="item.html" th:action method="post">
+    <form action="item.html" th:action th:object="${item}" method="post">
         <div>
             <label for="itemName">상품명</label>
-            <input type="text" id="itemName" name="itemName" class="form-control" placeholder="이름을 입력하세요">
+            <!--   th:field가 id, name, value 속성을 자동으로 만들어 줌.-->
+            <!--   ${item.itemName} == *{itemName}-->
+            <!--   id="itemName" name="itemName"-->
+            <input type="text" class="form-control" placeholder="이름을 입력하세요" th:field="*{itemName}">
         </div>
         <div>
             <label for="price">가격</label>
-            <input type="text" id="price" name="price" class="form-control" placeholder="가격을 입력하세요">
+            <input type="text" class="form-control" placeholder="가격을 입력하세요" th:field="*{price}">
         </div>
         <div>
             <label for="quantity">수량</label>
-            <input type="text" id="quantity" name="quantity" class="form-control" placeholder="수량을 입력하세요">
+            <input type="text" class="form-control" placeholder="수량을 입력하세요" th:field="*{quantity}">
+        </div>
+
+        <hr class="my-4">
+
+        <div>판매 여부</div>
+        <div>
+            <div class="form-check">
+                <!--checkbox input태그가 체크되었을 경우에는 값이 "on"으로 넘어가지만 체크되지 않았을 경우에는 아예 값이 넘어가지 않음.(null)-->
+                <!--그래서 hidden태그(<input type="hidden" name="_open" value="on">)로 "on"값을 넘겨주면 Spring에서 자동으로 값을 true, false로 변환해 줌-->
+                <!--Thymeleaf를 쓰면 hidden태그까지 자동으로 추가해서 렌더링 해줌.-->
+                <input type="checkbox" class="form-check-input" th:field="*{open}">
+                <label for="open" class="form-check-label">판매 오픈</label>
+            </div>
+        </div>
+
+        <div>
+            <div>등록 지역</div>
+            <div th:each="region : ${regions}" class="form-check form-check-inline">
+                <input type="checkbox" th:field="*{regions}" th:value="${region.key}"
+                       class="form-check-input">
+                <label th:for="${#ids.prev('regions')}"
+                       th:text="${region.value}" class="form-check-label">서울</label>
+            </div>
+        </div>
+
+        <div>
+            <div>상품 종류</div>
+            <div th:each="type : ${itemTypes}" class="form-check form-check-inline">
+                <input type="radio" th:field="*{itemType}" th:value="${type.name()}"
+                       class="form-check-input">
+                <label th:for="${#ids.prev('itemType')}" th:text="${type.description}"
+                       class="form-check-label">BOOK
+                </label>
+            </div>
+        </div>
+
+        <div>
+            <div>배송 방식</div>
+            <select th:field="*{deliveryCode}" class="form-select">
+                <option value="">==배송 방식 선택==</option>
+                <option th:each="deliveryCode : ${deliveryCodes}" th:value="${deliveryCode.code}"
+                        th:text="${deliveryCode.displayName}">FAST
+                </option>
+            </select>
         </div>
 
         <hr class="my-4">
@@ -42,12 +89,11 @@
                 <button class="w-100 btn btn-secondary btn-lg"
                         onclick="location.href='items.html'"
                         th:onclick="|location.href='@{/form/items}'|"
-                        type="button">취소</button>
+                        type="button">취소
+                </button>
             </div>
         </div>
-
     </form>
-
 </div> <!-- /container -->
 </body>
 </html>
