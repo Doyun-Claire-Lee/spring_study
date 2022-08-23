@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SessionManager {
 
     public static final String SESSION_COOKIE_NAME = "mySessionId";
-    private Map<String, Object> sessionStore = new ConcurrentHashMap<>();
+    private final Map<String, Object> sessionStore = new ConcurrentHashMap<>();
 
     /**
      * 세션 생성
@@ -60,4 +60,3 @@ public class SessionManager {
                 .orElse(null);
     }
 }
-
