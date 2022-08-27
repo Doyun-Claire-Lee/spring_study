@@ -37,7 +37,6 @@ public class ErrorPageController {
 
     private void printErrorInfo(HttpServletRequest request) {
         // WAS가 에러페이지를 호출해주면서 request에 에러정보를 넣어줌.
-
         log.info("ERROR_EXCEPTION: {}", request.getAttribute(ERROR_EXCEPTION));
         log.info("ERROR_EXCEPTION_TYPE: {}", request.getAttribute(ERROR_EXCEPTION_TYPE));
         log.info("ERROR_MESSAGE: {}", request.getAttribute(ERROR_MESSAGE));
