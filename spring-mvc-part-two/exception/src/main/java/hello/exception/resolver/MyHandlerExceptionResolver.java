@@ -26,6 +26,6 @@ public class MyHandlerExceptionResolver implements HandlerExceptionResolver {
             log.error("resolver ex", e);
         }
 
-        return null;    // 받았던 예외를 아무 처리 하지 않고 다음 흐름으로 넘김
+        return null;    // 받았던 예외를 아무 처리 하지 않고 다음 흐름(다음 resolver)으로 넘김
     }
 }
