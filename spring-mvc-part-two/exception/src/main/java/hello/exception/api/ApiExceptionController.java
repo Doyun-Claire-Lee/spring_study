@@ -16,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class ApiExceptionController {
 
-    @GetMapping("/api/member/{id}")
+    @GetMapping("/api/members/{id}")
     public MemberDto getMember(@PathVariable("id") String id) {
         if (id.equals(("ex"))) {
             throw new RuntimeException("잘못된 사용자");

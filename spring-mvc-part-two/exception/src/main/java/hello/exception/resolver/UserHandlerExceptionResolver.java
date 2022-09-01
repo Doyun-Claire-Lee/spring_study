@@ -36,7 +36,6 @@ public class UserHandlerExceptionResolver implements HandlerExceptionResolver {
                     response.getWriter().write(objectMapper.writeValueAsString(errorResult));
                     // response.sencError와 달리 write 로직은 여기서 끝! (서블릿 컨테이너(was)로 돌아가 다시 에러 url을 호출하는 것이 아님)
 
-
                     return new ModelAndView();
                 } else {
                     // application/json 이외의 경우
