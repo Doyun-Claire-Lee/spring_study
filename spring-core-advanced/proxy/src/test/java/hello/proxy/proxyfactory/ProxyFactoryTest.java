@@ -1,6 +1,7 @@
 package hello.proxy.proxyfactory;
 
 import hello.proxy.common.advice.TimeAdvice;
+import hello.proxy.common.service.ConcreteService;
 import hello.proxy.common.service.ServiceImpl;
 import hello.proxy.common.service.ServiceInterface;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,47 @@ public class ProxyFactoryTest {
         assertThat(AopUtils.isAopProxy(proxy)).isTrue();
         assertThat(AopUtils.isJdkDynamicProxy(proxy)).isTrue();
         assertThat(AopUtils.isCglibProxy(proxy)).isFalse();
+    }
+
+    @Test
+    @DisplayName("구체클래스만 있으면 CGLIB 사용")
+    void concreteProxy() {
+        ConcreteService target = new ConcreteService();
+        ProxyFactory proxyFactory = new ProxyFactory(target);
+        proxyFactory.addAdvice(new TimeAdvice());
+
+        ConcreteService proxy = (ConcreteService) proxyFactory.getProxy();
+
+        log.info("targetClass={}", target.getClass());  //hello.proxy.common.service.ConcreteService
+        log.info("proxyClass={}", proxy.getClass());    //hello.proxy.common.service.ConcreteService$$EnhancerBySpringCGLIB$$b7cb4825 -> CGLIB 프록시!
+
+        proxy.call();
+
+        //ProxyFactory를 통해 만들어진 프록시만 유틸 사용 가능
+        assertThat(AopUtils.isAopProxy(proxy)).isTrue();
+        assertThat(AopUtils.isJdkDynamicProxy(proxy)).isFalse();
+        assertThat(AopUtils.isCglibProxy(proxy)).isTrue();
+    }
+
+    @Test
+    @DisplayName("proxyTargetClass 옵션을 사용하면 인터페이스가 있어도 CGLIB 사용, 클래스 기반 프록시 사용")
+    void proxyTargetClass() {
+        ServiceInterface target = new ServiceImpl();
+        ProxyFactory proxyFactory = new ProxyFactory(target);
+        proxyFactory.addAdvice(new TimeAdvice());
+        proxyFactory.setProxyTargetClass(true);         //***
+
+        ServiceInterface proxy = (ServiceInterface) proxyFactory.getProxy();
+
+        log.info("targetClass={}", target.getClass());  //hello.proxy.common.service.ServiceImpl
+        log.info("proxyClass={}", proxy.getClass());    //hello.proxy.common.service.ServiceImpl$$EnhancerBySpringCGLIB$$9b1d57bd
+
+        proxy.save();
+
+        //ProxyFactory를 통해 만들어진 프록시만 유틸 사용 가능
+        assertThat(AopUtils.isAopProxy(proxy)).isTrue();
+        assertThat(AopUtils.isJdkDynamicProxy(proxy)).isFalse();
+        assertThat(AopUtils.isCglibProxy(proxy)).isTrue();
     }
 
 }
