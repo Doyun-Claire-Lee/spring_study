@@ -5,6 +5,7 @@ import hello.proxy.config.AppConfigV2;
 import hello.proxy.config.v3_proxyfactory.advice.LogTraceAdvice;
 import hello.proxy.trace.logtrace.LogTrace;
 import org.springframework.aop.Advisor;
+import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.NameMatchMethodPointcut;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +17,35 @@ import org.springframework.context.annotation.Import;
 public class AutoProxyConfig {
 
     // 자동프록시생성기가 빈으로 등록된 모든 Advisor를 찾아서 포인트컷(조건)을 모든 빈에 적용해보고 하나라도 만족하면 프록시 객체를 빈으로 등록해준다.
-    @Bean
+//    @Bean
     public Advisor advisor1(LogTrace logTrace) {
         //pointcut
         NameMatchMethodPointcut pointcut = new NameMatchMethodPointcut();
         pointcut.setMappedNames("request*", "order*", "save*");
+
+        //advice
+        LogTraceAdvice advice = new LogTraceAdvice(logTrace);
+
+        return new DefaultPointcutAdvisor(pointcut, advice);
+    }
+
+    //    @Bean
+    public Advisor advisor2(LogTrace logTrace) {
+        //pointcut
+        AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+        pointcut.setExpression("execution(* hello.proxy.app..*(..))");  //해당 패키지 하위에 있으면 프록시 적용 대상이 됨
+
+        //advice
+        LogTraceAdvice advice = new LogTraceAdvice(logTrace);
+
+        return new DefaultPointcutAdvisor(pointcut, advice);
+    }
+
+    @Bean
+    public Advisor advisor3(LogTrace logTrace) {
+        //pointcut
+        AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+        pointcut.setExpression("execution(* hello.proxy.app..*(..)) && !execution(* hello.proxy.app..noLog(..))");  //해당 패키지 하위에 있으면 프록시 적용 대상이 됨
 
         //advice
         LogTraceAdvice advice = new LogTraceAdvice(logTrace);
