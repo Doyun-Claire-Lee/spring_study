@@ -68,6 +68,51 @@ public class MemberRepositoryV0 {
         }
     }
 
+    public void update(String memberId, int money) {
+        String sql = "update member set money = ? where member_id = ?";
+
+        Connection conn = null;
+        PreparedStatement statement = null;
+
+        try {
+            conn = getConnection();
+            statement = conn.prepareStatement(sql);
+            statement.setInt(1, money);
+            statement.setString(2, memberId);
+
+            int resultSize = statement.executeUpdate();
+            log.info("resultSize={}", resultSize);
+
+        } catch (SQLException e) {
+            log.error("dbError", e);
+            throw new RuntimeException(e);
+        } finally {
+            close(conn, statement, null);
+        }
+    }
+
+    public void delete(String memberId) {
+        String sql = "delete from member where member_id = ?";
+
+        Connection conn = null;
+        PreparedStatement statement = null;
+
+        try {
+            conn = getConnection();
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, memberId);
+
+            int resultSize = statement.executeUpdate();
+            log.info("resultSize={}", resultSize);
+
+        } catch (SQLException e) {
+            log.error("dbError", e);
+            throw new RuntimeException(e);
+        } finally {
+            close(conn, statement, null);
+        }
+    }
+
     private static Connection getConnection() {
         return DBConnectionUtil.getConnection();
     }
