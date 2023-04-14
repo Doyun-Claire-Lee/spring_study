@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.NoSuchElementException;
 
 /**
  * JDBC - DriverManager 사용
@@ -34,6 +35,36 @@ public class MemberRepositoryV0 {
             throw new RuntimeException(e);
         } finally {
             close(conn, statement, null);
+        }
+    }
+
+    public Member findById(String memberId) {
+        String sql = "select * from member where member_id = ?";
+
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+
+        try {
+            conn = getConnection();
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, memberId);
+
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                Member member = new Member();
+                member.setMemberId(rs.getString("member_id"));
+                member.setMoney(rs.getInt("money"));
+
+                return member;
+            }
+
+            throw new NoSuchElementException("member not found, memberId=" + memberId);
+        } catch (SQLException e) {
+            log.error("dbError", e);
+            throw new RuntimeException(e);
+        } finally {
+            close(conn, statement, rs);
         }
     }
 
