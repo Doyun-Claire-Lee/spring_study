@@ -4,7 +4,6 @@ import hello.jdbc.domain.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.support.JdbcUtils;
-import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -16,7 +15,6 @@ import java.util.NoSuchElementException;
  * DataSourceUtils.releaseConnection()
  */
 @Slf4j
-@Repository
 public class MemberRepositoryV3 {
 
     private final DataSource dataSource;
@@ -91,7 +89,7 @@ public class MemberRepositoryV3 {
             statement.setString(2, memberId);
 
             int resultSize = statement.executeUpdate();
-            log.info("resultSize={}", resultSize);
+            log.info("update resultSize={}", resultSize);
 
         } catch (SQLException e) {
             log.error("dbError", e);
@@ -114,7 +112,7 @@ public class MemberRepositoryV3 {
             statement.setString(1, memberId);
 
             int resultSize = statement.executeUpdate();
-            log.info("resultSize={}", resultSize);
+            log.info("delete resultSize={}", resultSize);
 
         } catch (SQLException e) {
             log.error("dbError", e);
